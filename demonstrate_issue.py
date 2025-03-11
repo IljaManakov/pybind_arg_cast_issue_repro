@@ -1,9 +1,11 @@
 import sys
-from pathlib import Path
-sys.path.insert(0, (Path(__file__).parent / "cmake-build-debug").as_posix())
+import pathlib
+sys.path.insert(0, (pathlib.Path(__file__).parent / "cmake-build-debug").as_posix())
 
-from arg_conversion_issue import the_issue, Derived
+from arg_conversion_issue import the_issue, Derived, Path
 
 derived = Derived()
-the_issue([derived], "some_path")  # works
-the_issue(derived, "some_path")  # arg conversion in dispatch goes haywire
+path = "some_path"
+
+the_issue([derived], path)  # works
+the_issue(derived, path)  # arg conversion in dispatcher goes haywire
